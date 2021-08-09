@@ -1,1 +1,17 @@
 @import url('../../node_modules/bootstrap/dist/css/bootstrap.min.css');
+/*General styles*/
+a {
+    color: white;
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: 100;
+    transition: 0.3s;
+}
+
+a:hover{
+    
+}
+/* Cards styles*/
+
+
+

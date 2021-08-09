@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../css/styles.css" type="text/css">
     <title>Renta Coworking App</title>
 </head>
@@ -16,7 +18,7 @@
     <div class="container">
         <div class="row">
             <table class="table table-hover">
-                <thead class="">
+                <thead class="table-primary">
                     <tr>
                         <th>Nombre</th>
                         <th>Paquete</th>
@@ -24,7 +26,7 @@
                         <th>Fecha de finalizacion</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="table-light">
                     <tr>
                         <th>Prueba</th>
                         <th>Prueba</th>
@@ -34,44 +36,39 @@
                 </tbody>
             </table>
         </div>
-        <div class="row justify-content-around mb-4">
+
+        <div class="row justify-content-around mb-4 mb-4">
             <div class="col-3">
-                <div class="card">
-                    <img class="card-image img-fluid" src="../res/img/coworkingImg.jpg" alt="">
-                    <div class="card-body">
-                        <h5 class="card-title">Ver los paquetes disponibles</h5>
-                        <p class="card-text">Revisa la información de todos los paquetes disponibles dentro de los diferentes espacios de Coworking</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn btn-success">Ver paquetes </a>
-                    </div>
-                </div>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary">
+                    <h4 class="card-title">Ver paquetes</h4> 
+                    <i class="fas fa-list fa-3x"></i> 
+                </button>
             </div>
             <div class="col-3">
-                <div class="card">
-                    <img class="card-image img-fluid" src="../res/img/coworkingImg.jpg" alt="">
-                    <div class="card-body">
-                        <h5 class="card-title">Ver los paquetes disponibles</h5>
-                        <p class="card-text">Revisa la información de todos los paquetes disponibles dentro de los diferentes espacios de Coworking</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn btn-success">Ver paquetes </a>
-                    </div>
-                </div>
-            </div><div class="col-3">
-                <div class="card">
-                    <img class="card-image img-fluid" src="../res/img/coworkingImg.jpg" alt="">
-                    <div class="card-body">
-                        <h5 class="card-title">Ver los paquetes disponibles</h5>
-                        <p class="card-text">Revisa la información de todos los paquetes disponibles dentro de los diferentes espacios de Coworking</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn btn-success">Ver paquetes </a>
-                    </div>
-                </div>
+                <button type="button" class="btn btn-success">
+                    <h4 class="card-title">Registrar reservación</h4> 
+                    <i class="fas fa-calendar-plus fa-3x"></i> 
+                </button>
+            </div>
+            <div class="col-3">
+                <button type="button" class="btn btn-secondary">
+                    <h4 class="card-title">Generar reportes</h4> 
+                    <i class="fas fa-clipboard-list fa-3x"></i> 
+                </button>
             </div>
         </div>
+
+        <div class="paquetes">
+            hola
+        </div>
+
+
+
+
     </div>
+      
+      
+
     
 </body>
 </html>
