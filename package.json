@@ -1,0 +1,23 @@
+{
+  "name": "renta-app",
+  "version": "1.0.0",
+  "description": "App para renta de espacios de Coworking",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [
+    "Renta",
+    "Paquetes",
+    "Coworking"
+  ],
+  "author": "Fernando David Arevalo De Loera",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.1.0",
+    "electron": "^13.1.8",
+    "electron-reload": "^2.0.0-alpha.1",
+    "handlebars": "^4.7.7",
+    "promise-mysql": "^5.0.3"
+  }
+}
