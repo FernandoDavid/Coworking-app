@@ -1,5 +1,5 @@
 {
-  "name": "renta-app",
+  "name": "coworking-app",
   "version": "1.0.0",
   "description": "App para renta de espacios de Coworking",
   "main": "src/index.js",
