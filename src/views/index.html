@@ -6,69 +6,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../css/styles.css" type="text/css">
-    <title>Renta Coworking App</title>
+    <link rel="stylesheet" href="../../public/assets/css/styles.css">
+    <title>Coworking app</title>
 </head>
 <body>
-    <header>
-        <div class="container-fluid text-center py-2">
-            <h1>Coworking Application</h1>
-        </div>
-    </header>
-    <div class="container">
-        <div class="row">
-            <table class="table table-hover">
-                <thead class="table-primary">
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Paquete</th>
-                        <th>Fecha de contratacion</th>
-                        <th>Fecha de finalizacion</th>
-                    </tr>
-                </thead>
-                <tbody class="table-light">
-                    <tr>
-                        <th>Prueba</th>
-                        <th>Prueba</th>
-                        <th>Prueba</th>
-                        <th>Prueba</th>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
 
-        <div class="row justify-content-around mb-4 mb-4">
-            <div class="col-3">
-                <button type="button" class="btn btn-primary w-100">
-                    <h4 class="card-title">Ver paquetes</h4> 
-                    <i class="fas fa-list fa-3x"></i> 
-                </button>
-            </div>
-            <div class="col-3">
-                <button type="button" class="btn btn-success w-100">
-                    <h4 class="card-title">Registrar reservación</h4> 
-                    <i class="fas fa-calendar-plus fa-3x"></i> 
-                </button>
-            </div>
-            <div class="col-3">
-                <button type="button" class="btn btn-secondary w-100">
-                    <h4 class="card-title">Generar reportes</h4> 
-                    <i class="fas fa-clipboard-list fa-3x"></i> 
-                </button>
-            </div>
-        </div>
-
-        <div class="paquetes">
-            hola
-        </div>
-
-
-
-
+    <div class="container-fluid py-2 bg-primary text-light text-center">
+        <h2>Coworking App</h2>
     </div>
-      
-      
 
-    
+    <div class="container my-4">
+        <div class="row gx-0">
+            <div class="col-3 text-center">
+                <div class="col-12">
+                    <table class="table">
+                        <thead>
+                            <th>Nombre</th>
+                            <th>Acciones</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="align-self-center" scope="row">Fernando David Arevalo De Loera</td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="actionButtons">
+                                        <button type="button" class="btn btn-success"><i class="fas fa-check"></i></button>
+                                        <button type="button" class="btn btn-danger"><i class="fas fa-times"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="align-self-center" scope="row">Fernando David Arevalo De Loera</td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="actionButtons">
+                                        <button type="button" class="btn btn-success"><i class="fas fa-check"></i></button>
+                                        <button type="button" class="btn btn-danger"><i class="fas fa-times"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-12">
+                    <button onclick="location.href = 'paquetes.html';" class="btn btn-primary mb-3">Agendar reservacion</button>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-warning mb-3" data-bs-toggle="modal" data-bs-target="#generarReporte">Generar reporte</button>
+                </div>
+            </div>
+            <div class="col-9 text-center">
+                <h1>Calendario</h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal generar reporte -->
+    <div class="modal fade" id="generarReporte" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Generar reporte</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Insertar inputs para la generacion del reporte
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-primary">Generar reporte</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

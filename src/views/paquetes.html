@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../public/assets/css/styles.css">
+    <title>Coworking app</title>
+</head>
+<body>
+
+    <div class="container-fluid py-2 bg-primary text-light text-center">
+        <h2>Coworking App</h2>
+    </div>
+
+    <div class="container my-4">
+        <div class="row gx-0">
+            <div class="card mb-3">
+                <div class="row g-0">
+                  <div class="col-md-3">
+                    <img src="../../public/res/img/coworkingImg.jpg" class="img-fluid rounded-start" alt="...">
+                  </div>
+                  <div class="col-md-9">
+                    <div class="card-body">
+                      <div class="row">
+                          <div class="col-11">
+                            <h5 class="card-title">Nombre del paquete</h5>
+                          </div>
+                          <div class="col-1">
+                            <div class="options">
+                                <button class="btn btn-light"><i class="fas fa-cog"></i></button>
+                            </div>
+                          </div>
+                      </div>
+                        
+                      <div class="row">
+                          <div class="col-12">
+                              Servicios incluidos dentro del paquete
+                          </div>
+                          <div class="col-4">
+                            <p class="card-text">Personas:</p>
+                          </div>
+                          <div class="col-4">
+                            <p class="card-text">Tarifa hora:</p>
+                          </div>
+                          <div class="col-4">
+                            <p class="card-text">Tarifa dia:</p>
+                          </div>
+                          <div class="col-4">
+                            <p class="card-text">Tarifa semana:</p>
+                          </div>
+                          <div class="col-4">
+                            <p class="card-text">Tarifa mes:</p>
+                          </div>
+                          <div class="col-4">
+                            <p class="card-text">Medidas:</p>
+                          </div>
+                          <div class="col-4">
+                            <p class="card-text">Capacidad instalada:</p>
+                          </div>
+                          <div class="col-4">
+                            <p class="card-text">Tarifa hora:</p>
+                          </div>
+                          <div class="agenda">
+                              <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#registrarReservacion">Agendar reservacion</button>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <button onclick="location.href = 'index.html';" class="btn btn-primary">Regresar</button>
+    </div>
+    
+    <div class="modal fade" id="registrarReservacion" tabindex="-1" aria-labelledby="registrarReservacion" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Registrar reservacion</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-center">Reservacion para {paquete}</h4>
+                <div class="row">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Nombre cliente</span>
+                        <input type="text" class="form-control" placeholder="Nombre del cliente">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Fecha de inicio</span>
+                        <input type="datetime-local" class="form-control" placeholder="Fecha de contratacion">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Fecha de finalizacion</span>
+                        <input type="datetime-local" class="form-control" placeholder="Fecha de contratacion">
+                    </div>
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="inputGroupSelect01">Periodo de uso</label>
+                        <select class="form-select" id="inputGroupSelect01">
+                          <option selected>Seleccionar...</option>
+                          <option value="1">Por hora</option>
+                          <option value="2">Por dia</option>
+                          <option value="3">Semanal</option>
+                          <option value="4">Mensual</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Tiempo de uso</span>
+                        <input type="number" class="form-control" placeholder="Tiempo de uso">
+                    </div>
+                    <h5>Total neto: {total neto}</h5>
+                    <h5>Total con IVA: {total con IVA}</h5>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-primary">Agendar reservacion</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
