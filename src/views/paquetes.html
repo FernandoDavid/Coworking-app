@@ -20,7 +20,7 @@
             <div class="card mb-3">
                 <div class="row g-0">
                   <div class="col-md-3">
-                    <img src="../../public/res/img/coworkingImg.jpg" class="img-fluid rounded-start" alt="...">
+                    <img src="../../public/res/img/1.jpg" class="img-fluid rounded-start" alt="...">
                   </div>
                   <div class="col-md-9">
                     <div class="card-body">
@@ -74,55 +74,63 @@
         </div>
         <button onclick="location.href = 'index.html';" class="btn btn-primary">Regresar</button>
     </div>
-    
-    <div class="modal fade" id="registrarReservacion" tabindex="-1" aria-labelledby="registrarReservacion" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Registrar reservacion</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <h4 class="text-center">Reservacion para {paquete}</h4>
-                <div class="row">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Nombre cliente</span>
-                        <input type="text" class="form-control" placeholder="Nombre del cliente">
+    <form id="reservacionForm" action="POST">
+        <div class="modal fade" id="registrarReservacion" tabindex="-1" aria-labelledby="registrarReservacion" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Registrar reservacion</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Fecha de inicio</span>
-                        <input type="datetime-local" class="form-control" placeholder="Fecha de contratacion">
+                    <div class="modal-body">
+                        <h4 class="text-center">Reservacion para {paquete}</h4>
+                        <div class="row">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Nombre cliente</span>
+                                <input type="text" class="form-control" placeholder="Nombre del cliente" id="cliente" name="cliente">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Fecha de inicio</span>
+                                <input type="datetime-local" class="form-control" placeholder="Fecha de contratacion" id="fecha_contratacion" name="fecha_contratacion">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Fecha de finalizacion</span>
+                                <input type="datetime-local" class="form-control" placeholder="Fecha de finalizacion" id="fecha_finalizacion" name="fecha_finalizacion">
+                            </div>
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="inputGroupSelect01">Periodo de uso</label>
+                                <select class="form-select" id="periodo_uso" name="periodo_uso">
+                                <option selected>Seleccionar...</option>
+                                <option value="1">Por hora</option>
+                                <option value="2">Por dia</option>
+                                <option value="3">Semanal</option>
+                                <option value="4">Mensual</option>
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Tiempo de uso</span>
+                                <input type="number" class="form-control" placeholder="Tiempo de uso" id="tiempo_uso" name="tiempo_uso">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Total neto</span>
+                                <input type="number" class="form-control" placeholder="Total neto" id="total_neto" name="total_neto" readonly="readonly" value="1000.12">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Total con IVA</span>
+                                <input type="number" class="form-control" placeholder="Total con IVA" readonly="readonly">
+                            </div>
+                        </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Fecha de finalizacion</span>
-                        <input type="datetime-local" class="form-control" placeholder="Fecha de contratacion">
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" onclick="agendarReservacion(1)" class="btn btn-primary">Agendar reservacion</button>
                     </div>
-                    <div class="input-group mb-3">
-                        <label class="input-group-text" for="inputGroupSelect01">Periodo de uso</label>
-                        <select class="form-select" id="inputGroupSelect01">
-                          <option selected>Seleccionar...</option>
-                          <option value="1">Por hora</option>
-                          <option value="2">Por dia</option>
-                          <option value="3">Semanal</option>
-                          <option value="4">Mensual</option>
-                        </select>
-                    </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Tiempo de uso</span>
-                        <input type="number" class="form-control" placeholder="Tiempo de uso">
-                    </div>
-                    <h5>Total neto: {total neto}</h5>
-                    <h5>Total con IVA: {total con IVA}</h5>
                 </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn btn-primary">Agendar reservacion</button>
-            </div>
-          </div>
         </div>
-      </div>
+    </form>
 
+    <script src="../../public/assets/js/crudFunctions.js"></script>
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
