@@ -37,6 +37,16 @@ async function listPaquetes(){
     }
 }
 
+async function getPaquete(id){
+    try {
+        const conn = await getConnection();
+        const paquete = await conn.query("SELECT * FROM paquetes WHERE idpaquete="+id);
+        return paquete[0];
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 async function createReservacion(reservacion){
     try {
         const conn = await getConnection();
@@ -46,11 +56,40 @@ async function createReservacion(reservacion){
     }
 }
 
+async function deleteReservacion(idReservacion){
+    try {
+        const conn = await getConnection();
+        await conn.query("DELETE FROM reservaciones WHERE idReservacion="+idReservacion);
+    } catch (error) {
+        console.log(error);
+    }
+}
 
+async function aproveReservacion(idReservacion){
+    try {
+        const conn = await getConnection();
+        await conn.query("UPDATE reservaciones SET pagado=1 WHERE idReservacion="+idReservacion);
+    } catch (error) {
+        console.log(error);
+    }
+}
 
-
+async function getNoPagados(){
+    try {
+        const conn = await getConnection();
+        const noPagados = conn.query("SELECT idReservacion, cliente FROM reservaciones WHERE pagado=0");
+        return noPagados;
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 module.exports = {
     createWindow,
-    createReservacion
+    createReservacion,
+    listPaquetes,
+    getPaquete,
+    getNoPagados,
+    deleteReservacion,
+    aproveReservacion
 }

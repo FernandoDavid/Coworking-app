@@ -9,42 +9,19 @@
     <link rel="stylesheet" href="../../public/assets/css/styles.css">
     <title>Coworking app</title>
 </head>
-<body>
+<body onload="initIndex()">
 
     <div class="container-fluid py-2 bg-primary text-light text-center">
-        <h2>Coworking App</h2>
+        <h2>COWORKING</h2>
+        <h5>USO DE ZONAS EMPRESARIALES</h5>
     </div>
 
     <div class="container my-4">
         <div class="row gx-0">
             <div class="col-3 text-center">
                 <div class="col-12">
-                    <table class="table">
-                        <thead>
-                            <th>Nombre</th>
-                            <th>Acciones</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="align-self-center" scope="row">Fernando David Arevalo De Loera</td>
-                                <td>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="actionButtons">
-                                        <button type="button" class="btn btn-success"><i class="fas fa-check"></i></button>
-                                        <button type="button" class="btn btn-danger"><i class="fas fa-times"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="align-self-center" scope="row">Fernando David Arevalo De Loera</td>
-                                <td>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="actionButtons">
-                                        <button type="button" class="btn btn-success"><i class="fas fa-check"></i></button>
-                                        <button type="button" class="btn btn-danger"><i class="fas fa-times"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div id="noPagados">
+                    </div>
                 </div>
                 <div class="col-12">
                     <button onclick="location.href = 'paquetes.html';" class="btn btn-primary mb-3">Agendar reservacion</button>
