@@ -1,6 +1,12 @@
 const {BrowserWindow, app} = require('electron')
+const Pizzip = require('pizzip')
+const DocxTemplater = require('docxtemplater')
+const fs = require('fs')
 const { getConnection } = require('./database.js')
 const path = require('path')
+
+const homeDir = require('os').homedir();
+const desktopDir = `${homeDir}/Desktop`;
 
 let window;
 
@@ -25,7 +31,26 @@ function createWindow(){
     });
 }
 
-
+async function generateFicha(reservacion, fecha){
+    var content = fs.readFileSync(path.resolve(__dirname, 'docs/ficha_pago_cajas.docx'), 'binary');
+    const zip = new Pizzip(content);
+    const doc = new DocxTemplater(zip);
+    doc.setData({
+        fecha: fecha,
+        nombre: reservacion.cliente,
+        linea: 'Especificar linea',
+        subtotal: reservacion.total_neto,
+        iva:  Math.round(((reservacion.total_neto*0.16) + Number.EPSILON) * 100) / 100,
+        total: Math.round(((reservacion.total_neto*1.16) + Number.EPSILON) * 100) / 100
+    });
+    try {
+        doc.render();
+    } catch (e) {
+        throw e;
+    }
+    var buf = doc.getZip().generate({ type: 'nodebuffer' });
+    fs.writeFileSync(`${desktopDir}/Ficha_${reservacion.cliente}.docx`, buf);
+}
 
 async function listPaquetes(){
     try {
@@ -47,10 +72,20 @@ async function getPaquete(id){
     }
 }
 
-async function createReservacion(reservacion){
+async function modifyPaquete(id, data){
+    try {
+        const conn = await getConnection();
+        await conn.query("UPDATE paquetes SET ? WHERE idpaquete = ?",[data,id]);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function createReservacion(reservacion,fecha){
     try {
         const conn = await getConnection();
         await conn.query("INSERT INTO reservaciones SET ?", reservacion);
+        await generateFicha(reservacion,fecha);
     } catch (error) {
         console.log(error);
     }
@@ -91,5 +126,6 @@ module.exports = {
     getPaquete,
     getNoPagados,
     deleteReservacion,
-    aproveReservacion
+    aproveReservacion,
+    modifyPaquete
 }

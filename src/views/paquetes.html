@@ -22,12 +22,13 @@
         <button onclick="location.href = 'index.html';" class="btn btn-primary">Regresar</button>
     </div>
 
-    <form id="reservacionForm" method="POST" action="">
-        <div class="modal fade" id="registrarReservacion" tabindex="-1" aria-labelledby="registrarReservacion" aria-hidden="true">
+    <!-- Form reservar paquete-->
+    <form id="reservacionForm" method="POST">
+        <div class="modal fade" id="registrarReservacion" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="titleReservacion">Reservacion para </h5>
+                        <h5 class="modal-title" id="titleReservacion"></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -36,19 +37,19 @@
                             <input type="number" placeholder="idPaquete" id="idpaquete" name="idpaquete" hidden readonly="readonly">
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Nombre cliente</span>
-                                <input type="text" class="form-control" placeholder="Nombre del cliente" id="cliente" name="cliente">
+                                <input type="text" class="form-control" placeholder="Nombre del cliente" id="cliente" name="cliente" required>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Fecha de inicio</span>
-                                <input type="datetime-local" class="form-control" placeholder="Fecha de contratacion" id="fecha_contratacion" name="fecha_contratacion">
+                                <input type="datetime-local" class="form-control" placeholder="Fecha de contratacion" id="fecha_contratacion" name="fecha_contratacion" required>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Fecha de finalizacion</span>
-                                <input type="datetime-local" class="form-control" placeholder="Fecha de finalizacion" id="fecha_finalizacion" name="fecha_finalizacion">
+                                <input type="datetime-local" class="form-control" placeholder="Fecha de finalizacion" id="fecha_finalizacion" name="fecha_finalizacion" required>
                             </div>
                             <div class="input-group mb-3">
                                 <label class="input-group-text" for="inputGroupSelect01">Periodo de uso</label>
-                                <select class="form-select" id="periodo_uso" name="periodo_uso" onchange="calcularPrecios()">
+                                <select class="form-select" id="periodo_uso" name="periodo_uso" onchange="calcularPrecios()" required>
                                 <option selected>Seleccionar...</option>
                                 <option value="1">Por hora</option>
                                 <option value="2">Por dia</option>
@@ -58,21 +59,69 @@
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Tiempo de uso</span>
-                                <input type="number" class="form-control" placeholder="Tiempo de uso" id="tiempo_uso" name="tiempo_uso" onchange="calcularPrecios()" value="0" min="0" step="0.01">
+                                <input type="number" class="form-control" placeholder="Tiempo de uso" id="tiempo_uso" name="tiempo_uso"  value="0" min="0" step="1" onchange="calcularPrecios()" required>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Total neto</span>
-                                <input type="number" class="form-control" placeholder="Total neto" id="total_neto" name="total_neto" readonly="readonly" value="0" min="0" step="0.01">
+                                <input type="number" class="form-control" placeholder="Total neto" id="total_neto" name="total_neto" readonly="readonly" value="0" min="0" step="0.01" required>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Total con IVA</span>
-                                <input type="number" class="form-control" placeholder="Total con IVA" readonly="readonly" id="total_iva" name="total_iva" value="0" min="0" step="0.01">
+                                <input type="number" class="form-control" placeholder="Total con IVA" readonly="readonly" id="total_iva" name="total_iva" value="0" min="0" step="0.01" required autofocus="true">
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" id="btnAgendar">Agendar reservacion</button>
+                    <button type="submit" class="btn btn-primary" id="btnAgendar">Agendar reservacion</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Form modificar paquete-->
+    <form id="modificarForm" method="POST" >
+        <div class="modal fade" id="modificarPaquete" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modificartitlePaquete"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h4 class="text-center">Datos del paquete</h4>
+                        <div class="row">
+                            <input type="number" placeholder="idPaquete" id="modificaridpaquete" name="modificaridpaquete" hidden readonly="readonly">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Nombre del paquete</span>
+                                <input type="text" class="form-control" placeholder="Nombre del paquete" id="modificarnombre" name="modificarnombre" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Servicios</span>
+                                <textarea class="form-control" id="modificarservicios" required></textarea>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Tarifa por hora</span>
+                                <input type="number" class="form-control" placeholder="Tarifa por hora" id="modificartarifa_hora" name="modificartarifa_hora" value="0" min="0" step="0.01" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Tarifa por dia</span>
+                                <input type="number" class="form-control" placeholder="Tarifa por dia" id="modificartarifa_dia" name="modificartarifa_dia" value="0" min="0" step="0.01" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Tarifa por semanal</span>
+                                <input type="number" class="form-control" placeholder="Tarifa por semanal" id="modificartarifa_semana" name="modificartarifa_semana" value="0" min="0" step="0.01" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Tarifa por mes</span>
+                                <input type="number" class="form-control" placeholder="Tarifa por mes" id="modificartarifa_mensual" name="modificartarifa_mensual" value="0" min="0" step="0.01" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="btnModificar">Modificar paquete</button>
                     </div>
                 </div>
             </div>

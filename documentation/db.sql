@@ -16,11 +16,11 @@ CREATE TABLE `coworking`.`paquetes` (
   PRIMARY KEY (`idpaquete`)
   );
   
-  
   CREATE TABLE `coworking`.`reservaciones` (
   `idReservacion` INT NOT NULL AUTO_INCREMENT,
   `idPaquete` INT NOT NULL,
   `cliente` VARCHAR(60) NOT NULL,
+  `fecha_registro` DATE NOT NULL,
   `fecha_contratacion` DATETIME NOT NULL,
   `fecha_finalizacion` DATETIME NOT NULL,
   `periodo_uso` TINYINT(1) NOT NULL,
@@ -45,6 +45,7 @@ INSERT INTO `coworking`.`paquetes` (`nombre`, `servicios`, `tarifa_hora`, `tarif
 	-- QUERIES BD
 SELECT * FROM coworking.paquetes;
 SELECT * FROM coworking.reservaciones;
+
 truncate table coworking.reservaciones;
 
 drop table coworking.paquetes;
