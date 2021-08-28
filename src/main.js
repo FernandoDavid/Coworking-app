@@ -91,6 +91,20 @@ async function createReservacion(reservacion,fecha){
     }
 }
 
+async function verificarDisponibilidad(fecha_contratacion, idpaquete){
+    try {
+        const  fecha_actual = new Date(fecha_contratacion);
+        const  fecha = fecha_actual.getFullYear()+'-'+('0'+(fecha_actual.getMonth()+1)).slice(-2)+'-'+('0'+(fecha_actual.getDate())).slice(-2) + " "+("0"+fecha_actual.getHours()).slice(-2)+":"+("0"+fecha_actual.getMinutes()).slice(-2)+":00";;
+        //console.log(fecha);
+        const conn = await getConnection();
+        const res =  await conn.query("SELECT verificarReservacion('"+fecha+"',"+idpaquete+") as disponible");
+        //console.log(res[0].disponible);
+        return res[0].disponible;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 async function deleteReservacion(idReservacion){
     try {
         const conn = await getConnection();
@@ -127,5 +141,6 @@ module.exports = {
     getNoPagados,
     deleteReservacion,
     aproveReservacion,
-    modifyPaquete
+    modifyPaquete,
+    verificarDisponibilidad
 }
