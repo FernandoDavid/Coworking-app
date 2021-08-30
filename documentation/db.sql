@@ -72,7 +72,4 @@ begin
     return nodisponible;
 end;
 $$
-drop function verficarReservacion;
-select * from reservaciones;
-truncate table reservaciones;
-select verificarReservacion('2021-08-29 12:00:00', 3);
+

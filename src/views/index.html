@@ -10,24 +10,40 @@
     <title>Coworking app</title>
 </head>
 <body onload="initIndex()">
-
-    <div class="container-fluid py-2 bg-primary text-light text-center">
-        <h2>COWORKING</h2>
-        <h5>USO DE ZONAS EMPRESARIALES</h5>
+    
+    <div class="container-fluid py-2 header">
+        <div class="row">
+            <div class="col-1">
+                <img src="./../../public/res/img/innovation logo.png" class="innovation-logo ">
+            </div>
+            <div class="col-6">
+                <h1>COWORKING</h1>
+                <h3>USO DE ZONAS EMPRESARIALES</h3>
+            </div>
+            <!-- Implementar foto coworking con degradado por la derecha 
+            <div class="col-2 ms-auto">
+                <img src="./../../public/res/img/upa logo.png" class="upa-logo" >
+            </div>
+            -->
+        </div>
     </div>
+    <div class="header-bar"></div>
 
     <div class="container my-4">
         <div class="row gx-0">
             <div class="col-3 text-center">
                 <div class="col-12">
-                    <div id="noPagados">
+                    <div id="noPagados" class="tarjetas-container pb-1">
+                        <h4>Reservaciones pendientes</h4>
                     </div>
                 </div>
-                <div class="col-12">
-                    <button onclick="location.href = 'paquetes.html';" class="btn btn-primary mb-3">Agendar reservacion</button>
+                <div class="row gx-0">
+                    <button onclick="location.href = 'paquetes.html';">
+                        Design
+                    </button>
                 </div>
-                <div class="col-12">
-                    <button class="btn btn-warning mb-3" data-bs-toggle="modal" data-bs-target="#generarReporte">Generar reporte</button>
+                <div class="col-12 mb-4">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est quidem quaerat delectus tenetur architecto ipsam molestiae quo, expedita vitae tempore sint eligendi illo odio maiores voluptas, maxime dignissimos, pariatur ipsum?
                 </div>
             </div>
             <div class="col-9 text-center">

@@ -1,5 +1,82 @@
 @import url('../../../node_modules/bootstrap/dist/css/bootstrap.min.css');
+/*Title font font-family: 'Archivo Narrow', sans-serif;*/
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow&display=swap');
+/*text font-family: 'Almarai', sans-serif;*/
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300&display=swap');
 
+/* CSS variables*/
+:root{
+    /*Fonts*/
+    --main-font: 'Archivo Narrow', sans-serif;
+    --text-font: 'Almarai', sans-serif;
+    /*Colors*/
+    --main-color: rgb(0, 65, 126); 
+    --secondary-color: rgb(0, 132, 255); 
+    --border-color: rgb(0, 67, 105);
+}
+
+h1,h2,h3,h4,h5 {
+    font-family: var(--main-font);
+}
+p{
+    font-family: var(--text-font);
+}
+
+/* Header styles*/
+.header{
+    padding-left: 4rem;
+}
+
+.header h3{
+    color: rgb(105, 105, 105);
+    font-style: italic;
+}
+
+.innovation-logo{
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.header-bar{
+    height: 10px;
+    background: var(--main-color);
+}
+
+/*Main view styles*/
+
+.tarjetas-container{
+    background: rgb(255, 254, 243);
+    padding-top: 13px;
+    border-radius: 10px;
+    box-shadow: -4px 8px 21px -1px rgba(87, 87, 87, 0.79);
+}
+
+.tarjeta{
+    border-top: 5px solid var(--secondary-color);
+    
+    color: white;
+    padding-top: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
+    transition: all 0.15s;
+    background: var(--main-color);
+}
+
+.tarjeta-detalles{
+    margin-top: -10px;
+}
+
+.tarjeta-detalles p{
+    font-size: 13px;
+    color: white;
+    font-style: italic;
+}
+
+.tarjeta:hover{
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+    transform: scale(1.01);
+    transition: all 0.15s;
+}
 
 
 

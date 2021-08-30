@@ -31,7 +31,7 @@ async function agendarReservacion(idPaquete){
             pagado: 0
         }
         main.createReservacion(newReservacion, today);
-        location.reload(); 
+        location.href = 'index.html'; 
     }
     else{
         alert("El paquete solicitado no está disponible para la fecha que deseas, revisa el calendario de reservaciones y selecciona una fecha diferente");
@@ -102,34 +102,32 @@ function renderPaquetes(paquetes){
 }
 
 function renderNoPagados(clientesNP){
-    const tablaHTML = document.querySelector('#noPagados');
-    var tabla = ""
-    tabla += `
-    <table class="table">
-        <thead>
-            <th>Nombre</th>
-            <th>Validar</th>
-        </thead>
-        <tbody>
-    `    
+    const npHTML = document.querySelector('#noPagados');
     clientesNP.forEach((c)=>{
-        tabla += `
-                <tr>
-                    <td class="align-self-center" scope="row">${c.cliente}</td>
-                    <td>
-                        <div class="btn-group btn-group-sm" role="group" aria-label="actionButtons">
-                            <button type="button" onclick="validateReservacion(${c.idReservacion})" class="btn btn-success"><i class="fas fa-check"></i></button>
-                            <button type="button" onclick="deleteReservacion(${c.idReservacion})" class="btn btn-danger"><i class="fas fa-times"></i></button>
+        npHTML.innerHTML += `
+                <div class="tarjeta m-3 ">
+                        <div class="row">
+                            <div class="col-8">
+                                <p style="font-size: 15px; letter-spacing: 1px;"><b>${c.cliente}</b></p>
+                            </div>
+                            <div class="col-4">
+                                <div class="btn-group btn-group-sm" role="group" aria-label="actionButtons">
+                                    <button style="color: white;" onclick="validateReservacion(${c.reservacion})" type="button" class="btn"><i class="fas fa-check"></i></button>
+                                    <button style="color: white;" onclick="deleteReservacion(${c.reservacion})" type="button" class="btn"><i class="fas fa-times"></i></button>
+                                </div>
+                            </div>
                         </div>
-                    </td>
-                </tr>
+                        <div class="row tarjeta-detalles">
+                            <div class="col-8">
+                                <p>${c.paquete}</p>
+                            </div>
+                            <div class="col-4">
+                                <p>$${c.total}</p>
+                            </div>
+                        </div>
+                    </div>
         `
     });
-    tabla += `
-        </tbody>
-    </table>
-    `
-    tablaHTML.innerHTML = tabla;
 }
 
 function futureDate(fecha_contratacion, cantDias, cantHoras){

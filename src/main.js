@@ -126,7 +126,7 @@ async function aproveReservacion(idReservacion){
 async function getNoPagados(){
     try {
         const conn = await getConnection();
-        const noPagados = conn.query("SELECT idReservacion, cliente FROM reservaciones WHERE pagado=0");
+        const noPagados = conn.query("SELECT r.idReservacion reservacion, r.cliente cliente, p.nombre paquete, r.total_neto total FROM reservaciones r inner join paquetes p on r.idpaquete=p.idpaquete WHERE pagado=0");
         return noPagados;
     } catch (error) {
         console.log(error);
