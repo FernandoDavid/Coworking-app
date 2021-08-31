@@ -45,51 +45,62 @@ function renderPaquetes(paquetes){
     divPaquetes.innerHTML = "";
     paquetes.forEach((p)=>{
         divPaquetes.innerHTML += `
-        <div class="row gx-0">
-            <div class="card mb-3">
-                <div class="row g-0">
+        <div class="col-6 px-2">
+            <div class="card mb-3" style="height: 380px" >
+                <div class="row gx-0">
                   <div class="col-md-3">
-                    <img src="../../public/res/img/${p.idpaquete}.png" class="img-fluid rounded-start" alt="...">
+                    <img src="../../public/res/img/${p.idpaquete}.png" class="img-paquetes rounded-start" alt="imagenCoworking">
                   </div>
-                  <div class="col-md-9">
+                  <div class="col-md-9" >
                     <div class="card-body">
-                      <div class="row">
+                      <div class="row gx-0">
                           <div class="col-11">
-                            <h5 class="card-title">${p.nombre}</h5>
+                            <h2 class="card-title text-center">${p.nombre}</h2>
                           </div>
-                          <div class="col-1">
+                          <div class="col-1 ms-auto">
                             <div class="options">
                                 <button class="btn btn-light" onclick="fillModalModificar(${p.idpaquete})" data-bs-toggle="modal" data-bs-target="#modificarPaquete"><i class="fas fa-cog"></i></button>
                             </div>
                           </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-12">
-                            ${p.servicios}
+                      </div> 
+                      <div class="row gx-0">
+                          <div class="col-8">
+                            <h6 class="subtitle-paquete"><i class="fas fa-info"></i> Servicios</h6>
+                            <p>${p.servicios}</p>
                           </div>
                           <div class="col-4">
-                            <p class="card-text">Personas: ${p.capacidad_personas}</p>
+                            <h6 class="subtitle-paquete"><i class="fas fa-ruler"></i> Medidas</h6>
+                            <p>${p.medidas}</p>
                           </div>
-                          <div class="col-4">
-                            <p class="card-text">Tarifa hora: ${p.tarifa_hora}</p>
+                          <div class="col-12 text-center">
+                            <h3>Tarifas</h3>
+                            <hr class="line-box">
                           </div>
-                          <div class="col-4">
-                            <p class="card-text">Tarifa dia: ${p.tarifa_dia}</p>
+                          <div class="row gx-0 justify-content-around mb-3">
+                            <div class="col-2 text-center tarifa-box">
+                                <h5>Hora</h5>
+                                <p>$${p.tarifa_hora}</p>
+                            </div>
+                            <div class="col-2 text-center tarifa-box">
+                                <h5>Día</h5>
+                                <p>$${p.tarifa_dia}</p>
+                            </div>
+                            <div class="col-2 text-center tarifa-box">
+                                <h5>Semana</h5>
+                                <p>$${p.tarifa_semana}</p>
+                            </div>
+                            <div class="col-2 text-center tarifa-box">
+                                <h5>Mes</h5>
+                                <p>$${p.tarifa_mensual}</p>
+                            </div>
                           </div>
-                          <div class="col-4">
-                            <p class="card-text">Tarifa semana: ${p.tarifa_semana}</p>
-                          </div>
-                          <div class="col-4">
-                            <p class="card-text">Tarifa mes: ${p.tarifa_mensual}</p>
-                          </div>
-                          <div class="col-4">
-                            <p class="card-text">Medidas: ${p.medidas}</p>
-                          </div>
-                          <div class="col-4">
-                            <p class="card-text">Capacidad instalada: ${p.capacidad_instalada}</p>
-                          </div>
-                          <div class="agenda">
-                              <button onclick="fillModalReservacion(${p.idpaquete})" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#registrarReservacion">Agendar reservacion</button>
+                          <div class="row gx-0">
+                            <div class="col-7">
+                                <h6 class="subtitle-paquete"><i class="fas fa-users"></i> ${p.capacidad_instalada} unidad/es instalada/s para max. ${p.capacidad_personas} persona/s</h6>
+                            </div>
+                            <div class="col-4 ms-auto">
+                                <button onclick="fillModalReservacion(${p.idpaquete})" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registrarReservacion">Agendar reservación <i class="fas fa-arrow-right"></i></button>
+                            </div>
                           </div>
                       </div>
                     </div>
@@ -104,6 +115,7 @@ function renderPaquetes(paquetes){
 function renderNoPagados(clientesNP){
     const npHTML = document.querySelector('#noPagados');
     clientesNP.forEach((c)=>{
+        total_iva = Math.round(((c.total*1.16) + Number.EPSILON) * 100) / 100;
         npHTML.innerHTML += `
                 <div class="tarjeta m-3 ">
                         <div class="row">
@@ -122,7 +134,7 @@ function renderNoPagados(clientesNP){
                                 <p>${c.paquete}</p>
                             </div>
                             <div class="col-4">
-                                <p>$${c.total}</p>
+                                <p>$${total_iva}</p>
                             </div>
                         </div>
                     </div>

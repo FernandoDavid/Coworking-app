@@ -78,5 +78,49 @@ p{
     transition: all 0.15s;
 }
 
+.btn-reservacion{
+    color: white;
+    padding: 10px 20px;
+    border-style: none;
+    border-radius: 10px;
+    background: var(--secondary-color);
+    transition: all 0.15s;
+}
+
+.btn-reservacion:hover {
+    transform: scale(1.03);
+    transition: all 0.15s;
+}
+
+
+/*Paquetes styles*/
+.img-paquetes{
+    width: 210px;
+    height: 350px;
+}
+
+.subtitle-paquete{
+    color: gray; 
+    font-size: 15px !important;
+}
+
+.tarifa-box{
+    border-top: 3px solid var(--secondary-color);
+    max-height: 90%;
+    padding-top: 10px;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+}
+
+.line-box{
+    opacity: 100%;
+    width: 75%; 
+    color: var(--main-color);
+    margin: 0 auto; 
+    border-radius: 5px;  
+    height: 5px !important;
+    margin-bottom: 0.75rem;
+    margin-top: -5px;
+}
 
 

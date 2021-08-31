@@ -29,11 +29,11 @@
     </div>
     <div class="header-bar"></div>
 
-    <div class="container my-4">
-        <div id="paquetes" class="">
+    <div class="container-fluid my-4 px-4">
+        <div id="paquetes" class="row gx-0">
             <!--Container para los paquetes-->
         </div>
-        <button onclick="location.href = 'index.html';" class="btn btn-primary">Regresar</button>
+        <button onclick="location.href = 'index.html';" class="btn btn-danger"><i class="fas fa-arrow-left"></i> Regresar</button>
     </div>
 
     <!-- Form reservar paquete-->
@@ -46,25 +46,25 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <h4 class="text-center">Datos del cliente </h4>
+                        <h4 class="">Ingrese los siguientes datos...</h4>
                         <div class="row">
                             <input type="number" placeholder="idPaquete" id="idpaquete" name="idpaquete" hidden readonly="readonly">
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Nombre cliente</span>
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
                                 <input type="text" class="form-control" placeholder="Nombre del cliente" id="cliente" name="cliente" required>
                             </div>
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Fecha de inicio</span>
+                                <span class="input-group-text" id="basic-addon1"><i class="far fa-calendar-plus"></i></span>
                                 <input type="datetime-local" class="form-control" onchange="calcular()" placeholder="Fecha de contratacion" id="fecha_contratacion" name="fecha_contratacion" required>
                             </div>
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Fecha de finalizacion</span>
+                                <span class="input-group-text" id="basic-addon1"><i class="far fa-calendar-minus"></i></span>
                                 <input type="datetime-local" class="form-control" placeholder="Fecha de finalizacion" id="fecha_finalizacion" name="fecha_finalizacion" required readonly="readonly">
                             </div>
                             <div class="input-group mb-3">
-                                <label class="input-group-text" for="inputGroupSelect01">Periodo de uso</label>
+                                <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-hourglass-half"></i></label>
                                 <select class="form-select" id="periodo_uso" name="periodo_uso" onchange="calcular()" required>
-                                <option selected>Seleccionar...</option>
+                                <option selected>Periodo de uso...</option>
                                 <option value="1">Por hora</option>
                                 <option value="2">Por dia</option>
                                 <option value="3">Semanal</option>
@@ -72,8 +72,8 @@
                                 </select>
                             </div>
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Tiempo de uso</span>
-                                <input type="number" class="form-control" placeholder="Tiempo de uso" id="tiempo_uso" name="tiempo_uso"  value="1" min="1" step="1" onchange="calcular()" required>
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-clock"></i></span>
+                                <input type="number" class="form-control" placeholder="Tiempo de uso" id="tiempo_uso" name="tiempo_uso" min="1" step="1" onchange="calcular()" required>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Total neto</span>
@@ -142,18 +142,7 @@
         </div>
     </form>
 
-    <div class="notification">
-        <div class="toast" id="noti" role="alert" aria-live="assertive" aria-atomic="true" style="position: absolute; top: 20px; right: 20px">
-            <div class="toast-header">
-                <strong class="mr-auto"> Toast mensaje </strong>
-                <small>MEnsaje peque toast</small>
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close"><span aria-hidden="true">&times;</span> </button>
-            </div>
-            <div class="toast-body">
-                Mensaje principal cuerpo toast
-            </div> 
-        </div>
-    </div>
+    
     
     <script src="../../public/assets/js/crudFunctions.js"></script>
     <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
