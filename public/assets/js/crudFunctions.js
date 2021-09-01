@@ -3,40 +3,50 @@ const main = remote.require('./../src/main.js')
 
 //Validar fecha para que sea de lunes a viernes y la hora de 8 a 7 
 async function agendarReservacion(idPaquete){
-    var cliente = document.getElementById('cliente');
+    
     var fecha_contratacion = document.getElementById('fecha_contratacion');
-    var fecha_finalizacion = document.getElementById('fecha_finalizacion');
-    var periodo_uso = document.getElementById('periodo_uso');
-    var tiempo_uso = document.getElementById('tiempo_uso');
-    var total_neto = document.getElementById('total_neto');
-    var disponibilidad = await main.verificarDisponibilidad(fecha_contratacion.value, idPaquete);
-    console.log(disponibilidad);
-    if(disponibilidad == 0){
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); //Month starts in 0
-        var yyyy = today.getFullYear();
+    var date=new Date(fecha_contratacion.value);
+    var dia=date.getUTCDay();
+    var hora=date.getUTCHours();
+    
 
-        today = yyyy + '/' + mm + '/' + dd;
+    if((dia>0 && dia<6) && (hora>=8 && hora<=19)){
+        var disponibilidad = await main.verificarDisponibilidad(fecha_contratacion.value, idPaquete);
+        if(disponibilidad == 0){
+            var cliente = document.getElementById('cliente');
+            var fecha_finalizacion = document.getElementById('fecha_finalizacion');
+            var periodo_uso = document.getElementById('periodo_uso');
+            var tiempo_uso = document.getElementById('tiempo_uso');
+            var total_neto = document.getElementById('total_neto');
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //Month starts in 0
+            var yyyy = today.getFullYear();
 
-        const newReservacion = {
-            idPaquete: idPaquete,
-            cliente: cliente.value,
-            fecha_registro: today,
-            fecha_contratacion: fecha_contratacion.value,
-            fecha_finalizacion: fecha_finalizacion.value,
-            periodo_uso: periodo_uso.value,
-            tiempo_uso: tiempo_uso.value,
-            total_neto: total_neto.value,
-            pagado: 0
+            today = yyyy + '/' + mm + '/' + dd;
+
+            const newReservacion = {
+                idPaquete: idPaquete,
+                cliente: cliente.value,
+                fecha_registro: today,
+                fecha_contratacion: fecha_contratacion.value,
+                fecha_finalizacion: fecha_finalizacion.value,
+                periodo_uso: periodo_uso.value,
+                tiempo_uso: tiempo_uso.value,
+                total_neto: total_neto.value,
+                pagado: 0
+            }
+            await main.createReservacion(newReservacion, today);
+            alert("Reservación creada. Imprime la ficha de pago ubicada en el escritorio para proceder a validarla.");
+            location.href = 'index.html'; 
         }
-        await main.createReservacion(newReservacion, today);
-        alert("Reservación creada. Imprime la ficha de pago ubicada en el escritorio para proceder a validarla.");
-        location.href = 'index.html'; 
+        else{
+            alert("El paquete solicitado no está disponible para la fecha que deseas, revisa el calendario de reservaciones y selecciona una fecha diferente");
+            location.href = 'index.html'; 
+        }
     }
     else{
-        alert("El paquete solicitado no está disponible para la fecha que deseas, revisa el calendario de reservaciones y selecciona una fecha diferente");
-        location.href = 'index.html'; 
+        alert("La fecha de reservación u hora no están dentro de los horarios establecidos. Las reservaciones se hacen de Lunes a Vierdes de 8:00am a 7:00pm.")
     }
 }
 
