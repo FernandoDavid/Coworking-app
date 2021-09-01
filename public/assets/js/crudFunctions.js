@@ -30,14 +30,14 @@ async function agendarReservacion(idPaquete){
             total_neto: total_neto.value,
             pagado: 0
         }
-        main.createReservacion(newReservacion, today);
+        await main.createReservacion(newReservacion, today);
+        alert("Reservación creada. Imprime la ficha de pago ubicada en el escritorio para proceder a validarla.");
         location.href = 'index.html'; 
     }
     else{
         alert("El paquete solicitado no está disponible para la fecha que deseas, revisa el calendario de reservaciones y selecciona una fecha diferente");
+        location.href = 'index.html'; 
     }
-     
-    //Show a notification when reservation added
 }
 
 function renderPaquetes(paquetes){
@@ -46,12 +46,9 @@ function renderPaquetes(paquetes){
     paquetes.forEach((p)=>{
         divPaquetes.innerHTML += `
         <div class="col-6 px-2">
-            <div class="card mb-3" style="height: 380px" >
+            <div class="card mb-3 paquetes" style="height: 400px" >
                 <div class="row gx-0">
-                  <div class="col-md-3">
-                    <img src="../../public/res/img/${p.idpaquete}.png" class="img-paquetes rounded-start" alt="imagenCoworking">
-                  </div>
-                  <div class="col-md-9" >
+                  <div class="col-md-12" >
                     <div class="card-body">
                       <div class="row gx-0">
                           <div class="col-11">
@@ -68,7 +65,7 @@ function renderPaquetes(paquetes){
                             <h6 class="subtitle-paquete"><i class="fas fa-info"></i> Servicios</h6>
                             <p>${p.servicios}</p>
                           </div>
-                          <div class="col-4">
+                          <div class="col-4" style="height: 110px !important;">
                             <h6 class="subtitle-paquete"><i class="fas fa-ruler"></i> Medidas</h6>
                             <p>${p.medidas}</p>
                           </div>
@@ -99,7 +96,7 @@ function renderPaquetes(paquetes){
                                 <h6 class="subtitle-paquete"><i class="fas fa-users"></i> ${p.capacidad_instalada} unidad/es instalada/s para max. ${p.capacidad_personas} persona/s</h6>
                             </div>
                             <div class="col-4 ms-auto">
-                                <button onclick="fillModalReservacion(${p.idpaquete})" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registrarReservacion">Agendar reservación <i class="fas fa-arrow-right"></i></button>
+                                <button onclick="fillModalReservacion(${p.idpaquete})" class="btn btn-primary reservar" data-bs-toggle="modal" data-bs-target="#registrarReservacion"><h6>Agendar reservación</h6></button>
                             </div>
                           </div>
                       </div>
@@ -139,6 +136,25 @@ function renderNoPagados(clientesNP){
                         </div>
                     </div>
         `
+    });
+}
+
+function renderPagados(pagados,div){
+    var containerHTML = document.getElementById('aprobadas-'+div);
+    pagados.forEach(p => {
+        var  fecha_actual = new Date(p.fecha_contratacion);
+        var  fecha1 = fecha_actual.getFullYear()+'-'+('0'+(fecha_actual.getMonth()+1)).slice(-2)+'-'+('0'+(fecha_actual.getDate())).slice(-2) + " "+("0"+fecha_actual.getHours()).slice(-2)+":"+("0"+fecha_actual.getMinutes()).slice(-2);
+        fecha_actual = new Date(p.fecha_finalizacion);
+        var  fecha2 = fecha_actual.getFullYear()+'-'+('0'+(fecha_actual.getMonth()+1)).slice(-2)+'-'+('0'+(fecha_actual.getDate())).slice(-2) + " "+("0"+fecha_actual.getHours()).slice(-2)+":"+("0"+fecha_actual.getMinutes()).slice(-2);
+        
+        containerHTML.innerHTML +=`
+        <div class="reservacion-aprobada mb-2" >
+            <h5 style="font-size: 17px !important;">${p.cliente}</h5>
+            <p style="font-size: 15px !important;">${fecha1}</p>
+            <hr class="line-box" style="margin-top: -15px; margin-bottom: 0px; color: var(--secondary-color); height: 3px !important;">
+            <p style="font-size: 15px !important;">${fecha2}</p>
+        </div>
+        `;
     });
 }
 
@@ -231,6 +247,14 @@ async function getPaquetes() {
     renderPaquetes(paquetes);
 }
 
+async function getPagados(){
+    for (let i = 1; i <5 ; i++) {
+        pagados = await main.getPagados(i);
+        renderPagados(pagados, i);
+    }
+    
+}
+
 async function fillModalReservacion(id) {
     paquete = await main.getPaquete(id);
     var formAgendar = document.getElementById('reservacionForm');
@@ -240,7 +264,7 @@ async function fillModalReservacion(id) {
     formAgendar.reset();
     idPaquete.value = paquete.idpaquete;
     titulo.innerHTML = '';
-    titulo.innerText = 'Agendar reservacion para '+paquete.nombre;
+    titulo.innerText = 'Agendar reservación para '+paquete.nombre;
     formAgendar.setAttribute('onsubmit', 'agendarReservacion('+paquete.idpaquete+')');
 }
 
@@ -297,5 +321,6 @@ async function initPaquetes() {
 
 async function initIndex() {
     getNoPagados();
+    getPagados();
 }
 

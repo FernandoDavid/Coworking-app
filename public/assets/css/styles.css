@@ -13,6 +13,7 @@
     --main-color: rgb(0, 65, 126); 
     --secondary-color: rgb(0, 132, 255); 
     --border-color: rgb(0, 67, 105);
+    --green-color: rgb(35, 97, 4);
 }
 
 h1,h2,h3,h4,h5 {
@@ -32,6 +33,25 @@ p{
     font-style: italic;
 }
 
+.gradient{
+    margin-top: -300px;
+    margin-left: -400px;
+    z-index: -9998;
+    width: 700px;
+    height: 700px;
+    position: absolute;
+    background: radial-gradient(circle, rgba(255,255,255,1) 27%, rgba(255, 204, 0, 0) 73%);;
+}
+
+.upa-cover{
+    z-index: -9999;
+    margin-left: -100px;
+    position: absolute;
+    margin-top: -230px;
+    top: 0;
+    width: 80%;
+}
+
 .innovation-logo{
     margin-top: 1rem;
     width: 100%;
@@ -44,6 +64,14 @@ p{
 
 /*Main view styles*/
 
+.calendar-title{
+    padding: 5px 0px;
+    background: var(--main-color);
+    color: white;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
 .tarjetas-container{
     background: rgb(255, 254, 243);
     padding-top: 13px;
@@ -53,7 +81,6 @@ p{
 
 .tarjeta{
     border-top: 5px solid var(--secondary-color);
-    
     color: white;
     padding-top: 10px;
     border-radius: 10px;
@@ -78,6 +105,18 @@ p{
     transition: all 0.15s;
 }
 
+.reservaciones-box{
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+}
+
+.reservacion-aprobada{
+    border-top: 3px solid var(--secondary-color);
+    border-left: 3px solid var(--secondary-color);
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
+    padding-top: 5px;
+    border-radius: 5px;
+}
 .btn-reservacion{
     color: white;
     padding: 10px 20px;
@@ -94,14 +133,47 @@ p{
 
 
 /*Paquetes styles*/
+
+.paquetes{
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+    transition: all 0.15s;
+}
+
+.options, .reservar{
+    transition: all 0.15s;
+    opacity: 0%;
+}
+
+.paquetes:hover {
+    transform: scale(1.02);
+    border: 3px solid var(--secondary-color);
+    transition: all 0.15s;
+}
+
+.paquetes:hover .options{
+    transition: all 0.15s;
+    opacity: 100%;
+}
+
+.paquetes:hover .reservar{
+    transition: all 0.15s;
+    opacity: 100%;
+}
+
 .img-paquetes{
-    width: 210px;
-    height: 350px;
+    width: 200px;
+    height: 300px;
 }
 
 .subtitle-paquete{
     color: gray; 
     font-size: 15px !important;
+}
+
+.text-iva{
+    color: gray;
+    font-size: 13px;
+    font-style: italic;
 }
 
 .tarifa-box{

@@ -11,25 +11,24 @@
 </head>
 <body onload="initPaquetes()">
 
-    <div class="container-fluid py-2 header">
+    <div class="container-fluid py-3 header">
         <div class="row">
             <div class="col-1">
                 <img src="./../../public/res/img/innovation logo.png" class="innovation-logo ">
             </div>
-            <div class="col-6">
+            <div class="col-4">
                 <h1>COWORKING</h1>
                 <h3>USO DE ZONAS EMPRESARIALES</h3>
             </div>
-            <!--
-            <div class="col-2 ms-auto">
-                <img src="./../../public/res/img/upa logo.png" class="upa-logo" >
+            <div class="col-2">
+                <div class="gradient"></div>
+                <img src="./../../public/res/img/upa-ed1.jpeg" class="upa-cover" >
             </div>
-            -->
         </div>
     </div>
     <div class="header-bar"></div>
 
-    <div class="container-fluid my-4 px-4">
+    <div class="container-fluid bg-white p-4">
         <div id="paquetes" class="row gx-0">
             <!--Container para los paquetes-->
         </div>
@@ -48,18 +47,10 @@
                     <div class="modal-body">
                         <h4 class="">Ingrese los siguientes datos...</h4>
                         <div class="row">
-                            <input type="number" placeholder="idPaquete" id="idpaquete" name="idpaquete" hidden readonly="readonly">
+                            <input type="number" id="idpaquete" name="idpaquete" hidden readonly="readonly">
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
                                 <input type="text" class="form-control" placeholder="Nombre del cliente" id="cliente" name="cliente" required>
-                            </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1"><i class="far fa-calendar-plus"></i></span>
-                                <input type="datetime-local" class="form-control" onchange="calcular()" placeholder="Fecha de contratacion" id="fecha_contratacion" name="fecha_contratacion" required>
-                            </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1"><i class="far fa-calendar-minus"></i></span>
-                                <input type="datetime-local" class="form-control" placeholder="Fecha de finalizacion" id="fecha_finalizacion" name="fecha_finalizacion" required readonly="readonly">
                             </div>
                             <div class="input-group mb-3">
                                 <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-hourglass-half"></i></label>
@@ -70,10 +61,16 @@
                                 <option value="3">Semanal</option>
                                 <option value="4">Mensual</option>
                                 </select>
-                            </div>
-                            <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-clock"></i></span>
                                 <input type="number" class="form-control" placeholder="Tiempo de uso" id="tiempo_uso" name="tiempo_uso" min="1" step="1" onchange="calcular()" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="far fa-calendar-plus"></i></span>
+                                <input type="datetime-local" class="form-control" onchange="calcular()" placeholder="Fecha de contratacion" id="fecha_contratacion" name="fecha_contratacion" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1"><i class="far fa-calendar-minus"></i></span>
+                                <input type="datetime-local" class="form-control" placeholder="Fecha de finalizacion" id="fecha_finalizacion" name="fecha_finalizacion" required readonly="readonly">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Total neto</span>
@@ -104,7 +101,6 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <h4 class="text-center">Datos del paquete</h4>
                         <div class="row">
                             <input type="number" placeholder="idPaquete" id="modificaridpaquete" name="modificaridpaquete" hidden readonly="readonly">
                             <div class="input-group mb-3">
@@ -124,7 +120,7 @@
                                 <input type="number" class="form-control" placeholder="Tarifa por dia" id="modificartarifa_dia" name="modificartarifa_dia" value="0" min="0" step="0.01" required>
                             </div>
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Tarifa por semanal</span>
+                                <span class="input-group-text" id="basic-addon1">Tarifa por semana</span>
                                 <input type="number" class="form-control" placeholder="Tarifa por semanal" id="modificartarifa_semana" name="modificartarifa_semana" value="0" min="0" step="0.01" required>
                             </div>
                             <div class="input-group mb-3">

@@ -46,7 +46,7 @@ async function generateFicha(reservacion, fecha){
     try {
         doc.render();
     } catch (e) {
-        throw e;
+        alert(e);
     }
     var buf = doc.getZip().generate({ type: 'nodebuffer' });
     fs.writeFileSync(`${desktopDir}/Ficha_${reservacion.cliente}.docx`, buf);
@@ -58,7 +58,7 @@ async function listPaquetes(){
         const paquetes = await conn.query("SELECT * FROM paquetes");
         return paquetes;
     } catch (error) {
-        console.log(error);
+        alert("Error al enlistar paquetes:"+error);
     }
 }
 
@@ -68,7 +68,7 @@ async function getPaquete(id){
         const paquete = await conn.query("SELECT * FROM paquetes WHERE idpaquete="+id);
         return paquete[0];
     } catch (error) {
-        console.log(error);
+        alert("Error al obtener paquetes:"+error);
     }
 }
 
@@ -77,7 +77,7 @@ async function modifyPaquete(id, data){
         const conn = await getConnection();
         await conn.query("UPDATE paquetes SET ? WHERE idpaquete = ?",[data,id]);
     } catch (error) {
-        console.log(error);
+        alert("Error al modificar paquete:"+error);
     }
 }
 
@@ -87,21 +87,21 @@ async function createReservacion(reservacion,fecha){
         await conn.query("INSERT INTO reservaciones SET ?", reservacion);
         await generateFicha(reservacion,fecha);
     } catch (error) {
-        console.log(error);
+        alert("Error al agendar reservacion:"+error);
     }
 }
 
 async function verificarDisponibilidad(fecha_contratacion, idpaquete){
     try {
         const  fecha_actual = new Date(fecha_contratacion);
-        const  fecha = fecha_actual.getFullYear()+'-'+('0'+(fecha_actual.getMonth()+1)).slice(-2)+'-'+('0'+(fecha_actual.getDate())).slice(-2) + " "+("0"+fecha_actual.getHours()).slice(-2)+":"+("0"+fecha_actual.getMinutes()).slice(-2)+":00";;
+        const  fecha = fecha_actual.getFullYear()+'-'+('0'+(fecha_actual.getMonth()+1)).slice(-2)+'-'+('0'+(fecha_actual.getDate())).slice(-2) + " "+("0"+fecha_actual.getHours()).slice(-2)+":"+("0"+fecha_actual.getMinutes()).slice(-2)+":00";
         //console.log(fecha);
         const conn = await getConnection();
         const res =  await conn.query("SELECT verificarReservacion('"+fecha+"',"+idpaquete+") as disponible");
         //console.log(res[0].disponible);
         return res[0].disponible;
     } catch (error) {
-        console.log(error);
+        alert("Error al verificar disponibilidad:"+error);
     }
 }
 
@@ -110,7 +110,7 @@ async function deleteReservacion(idReservacion){
         const conn = await getConnection();
         await conn.query("DELETE FROM reservaciones WHERE idReservacion="+idReservacion);
     } catch (error) {
-        console.log(error);
+        alert("Error al eliminar reservacion:"+error);
     }
 }
 
@@ -119,7 +119,7 @@ async function aproveReservacion(idReservacion){
         const conn = await getConnection();
         await conn.query("UPDATE reservaciones SET pagado=1 WHERE idReservacion="+idReservacion);
     } catch (error) {
-        console.log(error);
+        alert("Error al aceptar reservacion:"+error);
     }
 }
 
@@ -128,6 +128,16 @@ async function getNoPagados(){
         const conn = await getConnection();
         const noPagados = conn.query("SELECT r.idReservacion reservacion, r.cliente cliente, p.nombre paquete, r.total_neto total FROM reservaciones r inner join paquetes p on r.idpaquete=p.idpaquete WHERE pagado=0");
         return noPagados;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function getPagados(id){
+    try {
+        const conn = await getConnection();
+        const pagados = conn.query("SELECT * FROM reservaciones WHERE idpaquete="+id+" and pagado=1 and fecha_finalizacion>now() order by fecha_contratacion, fecha_finalizacion");
+        return pagados;
     } catch (error) {
         console.log(error);
     }
@@ -142,5 +152,6 @@ module.exports = {
     deleteReservacion,
     aproveReservacion,
     modifyPaquete,
-    verificarDisponibilidad
+    verificarDisponibilidad,
+    getPagados
 }

@@ -11,26 +11,25 @@
 </head>
 <body onload="initIndex()">
     
-    <div class="container-fluid py-2 header">
+    <div class="container-fluid py-3 header">
         <div class="row">
             <div class="col-1">
                 <img src="./../../public/res/img/innovation logo.png" class="innovation-logo ">
             </div>
-            <div class="col-6">
+            <div class="col-4">
                 <h1>COWORKING</h1>
                 <h3>USO DE ZONAS EMPRESARIALES</h3>
             </div>
-            <!-- Implementar foto coworking con degradado por la derecha 
-            <div class="col-2 ms-auto">
-                <img src="./../../public/res/img/upa logo.png" class="upa-logo" >
+            <div class="col-2">
+                <div class="gradient"></div>
+                <img src="./../../public/res/img/upa-ed1.jpeg" class="upa-cover" >
             </div>
-            -->
         </div>
     </div>
     <div class="header-bar"></div>
 
-    <div class="container my-4">
-        <div class="row gx-0">
+    <div class="container-fluid p-4 bg-white" style="height: 100vh !important;">
+        <div class="row justify-content-evenly gx-0">
             <div class="col-3 text-center">
                 <div class="col-12">
                     <div class="tarjetas-container pb-1">
@@ -44,13 +43,32 @@
                             <div class="icon-box">
                                 <i class="far fa-calendar-plus fa-2x"></i>
                             </div>
-                            
                         </button>
                     </div>
                 </div>
             </div>
-            <div class="col-9 text-center">
-                <h1>Calendario</h1>
+            <div class="col-8 text-center reservaciones-box">
+                <div class="row gx-0 w-100 calendar-title" >
+                    <h2>Reservaciones aprobadas</h4>
+                </div>
+                <div class="row justify-content-evenly gx-0">
+                    <div class="col-2 p-2  reservaciones-container" id="aprobadas-1">
+                        <h4>Hot Desk</h4>
+                        <hr class="line-box" style="height: 3px !important;">
+                    </div>
+                    <div class="col-2 p-2 reservaciones-container" id="aprobadas-2">
+                        <h4>Private Desk</h4>
+                        <hr class="line-box" style="height: 3px !important;">
+                    </div> 
+                    <div class="col-2 p-2 reservaciones-container" id="aprobadas-3">
+                        <h4>Desk Plus</h4>
+                        <hr class="line-box" style="height: 3px !important;">
+                    </div> 
+                    <div class="col-2 p-2 reservaciones-container" id="aprobadas-4">
+                        <h4>Sala de juntas</h4>
+                        <hr class="line-box" style="height: 3px !important;">
+                    </div>                  
+                </div>
             </div>
         </div>
     </div>
